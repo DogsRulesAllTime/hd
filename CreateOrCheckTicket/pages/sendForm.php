@@ -1,9 +1,13 @@
+<<?php
+session_start();
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
   <?php
@@ -12,16 +16,13 @@ if(isset($_POST['submit'])){
 $userId = $_POST['message'];
  #   echo $userId;
 }
-$mysqli = new mysqli($serverMySQL, $dblog, $dbpass, $db);
-#if ($mysqli->connect_errno) {
-#    echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-#}
-#echo $mysqli->host_info . "\n";
-$mysqli->set_charset("utf8");
 
-$result = $mysqli->query("SELECT * FROM $table WHERE id = $userId ",MYSQLI_USE_RESULT);
 
-$actor = $result->fetch_assoc();
+
+
+$result = mysqli_query($connect,"SELECT * FROM `users` WHERE id = $userId ");
+
+$actor = mysqli_fetch_assoc($result);
 
 // Определяет есть ли пользователь в базе
 // функция с глобальной переменной
@@ -37,11 +38,9 @@ if (empty($actor)) {
      $display = "style='display:none'";  // скрыть основной блок, что бы не было пустого запроса.
 }
 
+ $_SESSION['id']=$actor['id'];
 
 
-#while($actor=$result->fetch_assoc()):
-#	print "$actor[id]  $actor[name]  $actor[surname]<br>";
-#endwhile;
 ?>
   <div class="wrapper">
 <?php status(); ?>
