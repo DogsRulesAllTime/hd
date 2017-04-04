@@ -22,8 +22,9 @@ if (mysqli_num_rows($rezult) == 0) {
 
   }
  ?>
-//Выбираем спецов пот отделам
+
  <?php
+ //Выбираем спецов пот отделам
  $select_sotr = '';
  if ($aq['tema']=='cad') {
  	$select_sotr = "SELECT * FROM `users` WHERE `otd`= 165";

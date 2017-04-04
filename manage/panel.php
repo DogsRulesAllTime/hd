@@ -5,11 +5,10 @@ $st = $_GET['st'];
   $avt = mysqli_query($connect , $select);
   $a = mysqli_fetch_assoc($avt);
 
-
+//проверка выбранной категории и установка цвета
 $new = "";
 $inWork = "";
 $done = "";
-
 if ($st == 0 ) {
   $new = "green";
 }elseif ($st == 1) {
