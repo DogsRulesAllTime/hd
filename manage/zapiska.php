@@ -1,54 +1,28 @@
 <?php
+//защита от перехода
 require_once 'includes/db.php';
-$id = $_GET['id'];
-
-//вывод информации по конкретной заявке
-$select = "SELECT * FROM `zapiski` WHERE `id`=$id"; //запрос для всех заявок
-$rezult = mysqli_query($connect,$select);
-$aq = mysqli_fetch_assoc($rezult);
-
-
-if (mysqli_num_rows($rezult) == 0) {
-  echo "Заявка не найдена!";
-  die();
-}else{
-    echo $aq['tema']."<br>";
-    echo $aq['text']."<br>";
-    echo $aq['status']."<br>";
-    echo $aq['data_sozdania']."<br>";
-      echo $aq['id_otprav']."<br>";
-        echo $aq['data_end']."<br>";
-          echo $aq['specialist']."<br>";
-
-  }
- ?>
-
- <?php
- //Выбираем спецов пот отделам
- $select_sotr = '';
- if ($aq['tema']=='cad') {
- 	$select_sotr = "SELECT * FROM `users` WHERE `otd`= 165";
-}elseif($aq['tema']=='po') {
- 	$select_sotr = "SELECT * FROM `users` WHERE `otd`= 132";
- }elseif($aq['tema']=='printer') {
-  $select_sotr = "SELECT * FROM `users` WHERE `otd`= 133";
- }
-
- $zapr_sotr = mysqli_query($connect,$select_sotr);
- $res_sotr = mysqli_fetch_assoc($zapr_sotr);
+if (isset($_SESSION['id'])){
+echo "этот текст видят только зарегистрированыые пользователи";}
+else{
+echo "вы не можете прочитать скрытый текст";
+die();
+}
 
 
+
+$s=$_SESSION['id'];
+$sam_zapr = "SELECT * FROM `users` WHERE `id` = $s";
+echo $sam_zapr;
+$zapros_dostupa = mysqli_query($connect,$sam_zapr);
+$zapr_result = mysqli_fetch_assoc($zapros_dostupa);
+echo '<br>'.'Status'.$zapr_result['dostup'].'<br>';
+$dostup = $zapr_result['dostup'];
+
+if ($dostup == 1) {
+  require '1.php';
+}elseif ($dostup == 2) {
+  require '2.php';
+}elseif($dostup == 3) {
+require '3.php';
+}
 ?>
-//Вывод  сотрудников
- <form class="" action="" method="post">
-   <select >
-  <?php
-  $zapr_sotr = mysqli_query($connect,$select_sotr);
-  $res_sotr = mysqli_fetch_assoc($zapr_sotr);
-   while ($res_sotr = mysqli_fetch_assoc($zapr_sotr)) {
-    echo  '<option >'. $res_sotr['surname'].'</option>';
-   }
-    ?>
-</select>
-   <input type="submit" name="sub" value="Применить">
- </form>

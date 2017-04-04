@@ -1,5 +1,6 @@
 <?php
 session_start(); //старт сессис
+
 //подключение к бд
 $connect = mysqli_connect("localhost", "root", "", "baza");
 if ($connect == false) {

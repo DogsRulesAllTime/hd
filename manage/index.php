@@ -53,14 +53,15 @@ if (isset($_POST['login'],$_POST['psw'])) {
     $avt = mysqli_query($connect , $select);
 
     $result = mysqli_fetch_assoc($avt);
-
+    $ids = $result['id_sotr'] ;
     if ( mysqli_num_rows($avt) == 0) {
 
       echo "пароль или логин не верный!";
+      
     }else {
       
       $_SESSION['login'] = $login;
-      $_SESSION['id'] = $result['id_sotr'];
+      $_SESSION['id'] = $ids;
       header( 'Location: panel.php?st=0');
       echo "приветствую ВАС";
     }

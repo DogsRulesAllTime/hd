@@ -1,6 +1,21 @@
 <?php
+//защита от перехода
+require_once 'includes/db.php';
+if (isset($_SESSION['id'])){
+echo "этот текст видят только зарегистрированыые пользователи";}
+else{
+echo "вы не можете прочитать скрытый текст";
+die();}
+
+
+//require_once 'includes/db.php'; //подключение соединения бд
+//var_dump($_SESSION['id']);
+
+
+
+
 $st = $_GET['st'];
-  require_once 'includes/db.php'; //подключение соединения бд
+  
   $select = "SELECT * FROM `zapiski` WHERE `status`= $st "; //запрос для всех заявок
   $avt = mysqli_query($connect , $select);
   $a = mysqli_fetch_assoc($avt);
@@ -34,6 +49,9 @@ if ($st == 0 ) {
 <body>
 <form action="exit.php" method="POST">
   <input type="submit" value= "Выход"" name="">
+</form>
+<form action="test.php" method="POST">
+  <input type="submit" value= "проверка" name="">
 </form>
 
   <div class="container">
