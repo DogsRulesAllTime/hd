@@ -29,6 +29,8 @@ if (mysqli_num_rows($rezult) == 0) {
  	$select_sotr = "SELECT * FROM `users` WHERE `otd`= 165";
 }elseif($aq['tema']=='po') {
  	$select_sotr = "SELECT * FROM `users` WHERE `otd`= 132";
+ }elseif($aq['tema']=='printer') {
+  $select_sotr = "SELECT * FROM `users` WHERE `otd`= 133";
  }
 
  $zapr_sotr = mysqli_query($connect,$select_sotr);

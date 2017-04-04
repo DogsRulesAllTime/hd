@@ -58,7 +58,7 @@ if (isset($_POST['login'],$_POST['psw'])) {
 
       echo "пароль или логин не верный!";
     }else {
-      session_start();
+      
       $_SESSION['login'] = $login;
       $_SESSION['id'] = $result['id_sotr'];
       header( 'Location: panel.php?st=0');
