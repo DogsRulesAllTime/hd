@@ -1,0 +1,43 @@
+
+.container{
+  overflow: auto;
+  border: 1px solid grey;
+}
+.status{
+  float: left;
+  border-right: 1px solid green;
+}
+.statusData{
+  height: 150px;
+  width: 210px;
+  border: 1px solid green;
+  border-bottom: none;
+  line-height: 100px;
+  text-align: center;
+
+}
+
+.table{
+  float: left;
+  width: 804px;
+}
+.captions{
+  overflow: auto;
+}
+.tableCaption{
+  float: left;
+  width: 200px;
+  border-left: 1px solid red;;
+}
+.form{
+border: 1px solid red;
+}
+.dataPole{
+  float: left;
+  width: 200px;
+  border: 1px solid red;
+  border-left: none;
+}
+.btn{
+  margin-left: 350px;
+}
